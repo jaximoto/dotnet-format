@@ -10695,7 +10695,7 @@ const core_1 = __nccwpck_require__(2186);
 const dotnet_1 = __nccwpck_require__(9870);
 const version_1 = __nccwpck_require__(1946);
 async function check() {
-    const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files");
+    const onlyChangedFiles = true;
     const failFast = (0, core_1.getBooleanInput)("fail-fast");
     const version = (0, core_1.getInput)("version", { required: true });
     const dotnetFormatVersion = (0, version_1.checkVersion)(version);
@@ -10711,7 +10711,7 @@ async function check() {
 }
 exports.check = check;
 async function fix() {
-    const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files");
+    const onlyChangedFiles = true;
     const version = (0, core_1.getInput)("version", { required: true });
     const dotnetFormatVersion = (0, version_1.checkVersion)(version);
     const result = await (0, dotnet_1.format)(dotnetFormatVersion)({
@@ -10749,7 +10749,7 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
 }
 async function formatVersion3(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format", "--check"];
+    const dotnetFormatOptions = ["format /Assets/Scripts", "--check"];
     if (options.dryRun && false) {}
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
         const filesToCheck = await (0, files_1.getPullRequestFiles)();
@@ -10761,7 +10761,7 @@ async function formatVersion3(options) {
         }
         dotnetFormatOptions.push("--files", filesToCheck.join(","));
     }
-    dotnetFormatOptions.push("--folder /Assets/Scripts");
+    dotnetFormatOptions.push("--folder");
     const dotnetPath = await (0, io_1.which)("dotnet", true);
     const dotnetResult = await (0, exec_1.exec)(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
     return !!dotnetResult;
