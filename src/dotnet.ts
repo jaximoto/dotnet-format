@@ -37,7 +37,7 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
 async function formatVersion3(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = { ignoreReturnCode: true };
 
-  const dotnetFormatOptions = ["format", "--check"];
+  const dotnetFormatOptions = ["format", "/Assets/Scripts", "--check"];
 
   if (options.dryRun && false) {
     dotnetFormatOptions.push("--dry-run");
@@ -56,7 +56,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
 
     dotnetFormatOptions.push("--files", filesToCheck.join(","));
   }
-  dotnetFormatOptions.push("--folder /Assets/Scripts");
+  dotnetFormatOptions.push("--folder");
   const dotnetPath: string = await which("dotnet", true);
   const dotnetResult = await exec(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
 
