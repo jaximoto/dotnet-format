@@ -58,7 +58,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
   }
   dotnetFormatOptions.push("--folder");
   const dotnetPath: string = await which("dotnet", true);
-  const dotnetResult = await exec(`"/home/runner/.dotnet/tools/dotnet format"`, dotnetFormatOptions, execOptions);
+  const dotnetResult = await exec(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
 
   return !!dotnetResult;
 }
