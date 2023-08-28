@@ -10927,7 +10927,7 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
 }
 async function formatVersion3(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format", "Assets/Scripts", "-v diag"];
+    const dotnetFormatOptions = ["format", "Assets/Scripts", "-v", "diag"];
     if (options.dryRun && false) {}
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
         const filesToCheck = await (0, files_1.getPullRequestFiles)();
